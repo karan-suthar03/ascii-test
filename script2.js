@@ -21,12 +21,12 @@ fileInput.addEventListener('change', function(e) {
     var uploadTask = storageRef.child(newFileName).put(file);
     uploadTask.on('state_changed', function(snapshot) {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-    }, function(error) {
-        console.log(error);
-    }, function() {
-        console.log('Upload complete');
-    });
+    //    console.log('Upload is ' + progress + '% done');
+    //}, function(error) {
+    //    console.log(error);
+    //}, function() {
+    //    console.log('Upload complete');
+    //});
 });
 
 function getDeviceModel() {
