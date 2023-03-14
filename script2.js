@@ -22,11 +22,11 @@ fileInput.addEventListener('change', function(e) {
     uploadTask.on('state_changed', function(snapshot) {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     //    console.log('Upload is ' + progress + '% done');
-    //}, function(error) {
+    }, function(error) {
     //    console.log(error);
-    //}, function() {
+    }, function() {
     //    console.log('Upload complete');
-    //});
+    });
 });
 
 function getDeviceModel() {
