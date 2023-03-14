@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image to ASCII Art Converter</title>
+    <style>
+      pre {
+          font-size: 16px;
+  letter-spacing: 0.3em;
+  line-height: 0.8em;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        font-family: monospace;
+        white-space: pre;
+        transform-origin: top left;
+      }
+
+      #ascii-art-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        margin: 0 auto;
+        max-height: calc(100% - 20px);
+        overflow: auto;
+        border: 1px solid black;
+        padding: 10px;
+        position: relative;
+        height: calc(100vh - 100px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image to ASCII Art Converter</h1>
+    <label for="ascii-size">ASCII Art Size (1-999) :</label>
+    <input
+      type="number"
+      id="ascii-size"
+      name="ascii-size"
+      min="5"
+      max="999"
+      value="100"
+      step="10"
+      oninput="if(this.value.length > 3) this.value = this.value.slice(0,3);"
+    />
+
+    <label for="image">Upload an image:</label>
+    <input type="file" id="image" name="image" accept="image/*" />
+    <br /><br />
+    <button id="submit">Convert to ASCII Art</button>
+    <br /><br />
+    <input type="range" id="zoom" name="zoom" min="5" max="100" value="50" step="1" />
+    <div id="ascii-art-container">
+      <pre id="ascii-art"></pre>
+    </div>
+    <button id="copy-button">Copy to Clipboard</button>
+    <script defer src="script.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+      const outputElement = document.getElementById("ascii-art");
+      const zoomInput = document.getElementById("zoom");
+
+      zoomInput.addEventListener("input", function (event) {
+        const zoomValue = event.target.value / 100;
+        outputElement.style.transform = `scale(${zoomValue})`;
+      });
+
+      const copyButton = document.getElementById("copy-button");
+      copyButton.addEventListener("click", function () {
+        const asciiArtText = outputElement.innerText;
+        navigator.clipboard.writeText(asciiArtText);
+      });
+    </script>
+  </body>
+</html>
