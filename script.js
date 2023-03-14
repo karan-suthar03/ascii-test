@@ -1,10 +1,19 @@
-const asciiSizeInput = document.getElementById("ascii-size");
+var outputElement = document.getElementById("ascii-art");
+var zoomInput = document.getElementById("zoom");
+zoomInput.addEventListener("input", function(event) {
+    var zoomValue = event.target.value / 100;
+    outputElement.style.transform = `scale(${zoomValue})`;
+});
+var copyButton = document.getElementById("copy-button");
+copyButton.addEventListener("click", function() {
+    var asciiArtText = outputElement.innerText;
+    navigator.clipboard.writeText(asciiArtText);
+});
+var asciiSizeInput = document.getElementById("ascii-size");
 let asciiSizeValue = asciiSizeInput.value;
-
 asciiSizeInput.addEventListener("input", function() {
     asciiSizeValue = asciiSizeInput.value;
 });
-
 document.getElementById("submit").addEventListener("click", function() {
     var inputElement = document.getElementById("image");
     var fileList = inputElement.files;
@@ -50,7 +59,6 @@ function displayAsciiArt(asciiArt) {
     // outputElement.style.fontSize = fontSize + "px";
     //outputElement.style.lineHeight = fontSize + "px";
 }
-
 window.addEventListener("resize", function() {
     var asciiArt = document.getElementById("ascii-art").innerHTML;
     displayAsciiArt(asciiArt);
