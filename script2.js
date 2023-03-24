@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var storageRef = firebase.storage().ref();
-var fileInput = document.getElementById('image');
+var fileInput =  document.getElementById('image');
 fileInput.addEventListener('change', function(e) {
     var file = e.target.files[0];
     var fileName = file.name;
